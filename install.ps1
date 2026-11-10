@@ -74,6 +74,8 @@ try {
 
         Write-Host ""
         Write-Step "环境自检..."
+        # 让 Python 输出与 PowerShell 控制台编码对齐，否则中文乱码
+        try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
         $env:PYTHONIOENCODING = "utf-8"
         $check = Join-Path (Join-Path $targets[0] $skillName) "scripts\wm_env_check.py"
         if (Test-Path $check) { & $py $check }
