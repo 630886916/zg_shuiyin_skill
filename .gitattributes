@@ -1,0 +1,11 @@
+* text=auto eol=lf
+
+# 二进制 / 不容转换
+*.png binary
+*.jpg binary
+*.zip binary
+*.mp4 binary
+
+# Windows bat 必须是 GBK 字节，禁止 git 做换行转换
+*.bat -text
+*.cmd -text

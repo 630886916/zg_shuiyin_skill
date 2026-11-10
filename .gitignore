@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# npx skills 运行产物
+.agents/
+.codebuddy/
+.skills.json
+skills-lock.json
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 技能运行产物（不应进仓库）
+水印版/
+*_水印版.mp4
+拼接成片_*.mp4
+质检报告.*
+对比_*.png
