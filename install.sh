@@ -23,7 +23,8 @@ elif command -v wget >/dev/null 2>&1; then
 else
   echo "[X] 需要 curl 或 wget" >&2; exit 1
 fi
-tar -xzf "$TMP/repo.tar.gz" -C "$TMP"
+# 用相对路径解压：GNU tar 会把 "C:/path" 误判为 host:path（Git Bash 经典坑）
+( cd "$TMP" && tar -xzf repo.tar.gz )
 SRC="$(find "$TMP" -maxdepth 3 -type d -name "$SKILL" -path "*/skills/*" | head -1)"
 if [ -z "${SRC:-}" ] || [ ! -f "$SRC/SKILL.md" ]; then
   echo "[X] 解压后找不到 skills/$SKILL/SKILL.md" >&2; exit 1
