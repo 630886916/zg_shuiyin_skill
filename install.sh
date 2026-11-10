@@ -17,9 +17,11 @@ echo ""
 
 echo "  下载仓库..."
 if command -v curl >/dev/null 2>&1; then
-  curl -fsSL "https://codeload.github.com/$REPO/tar.gz/refs/heads/main" -o "$TMP/repo.tar.gz"
+  curl -fsSL --max-time 180 --retry 2 --retry-delay 2 \
+    "https://codeload.github.com/$REPO/tar.gz/refs/heads/main" -o "$TMP/repo.tar.gz"
 elif command -v wget >/dev/null 2>&1; then
-  wget -qO "$TMP/repo.tar.gz" "https://codeload.github.com/$REPO/tar.gz/refs/heads/main"
+  wget -q --timeout=180 --tries=2 -O "$TMP/repo.tar.gz" \
+    "https://codeload.github.com/$REPO/tar.gz/refs/heads/main"
 else
   echo "[X] 需要 curl 或 wget" >&2; exit 1
 fi
